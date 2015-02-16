@@ -16,7 +16,7 @@ using System.Net.Mail;
 
 namespace BugTracker_The_Reckoning.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator, Project Manager")]
     public class ApplicationUsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
