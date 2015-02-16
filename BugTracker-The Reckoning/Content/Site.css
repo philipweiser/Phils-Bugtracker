@@ -1,0 +1,71 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+a{
+    color:#317eac;
+}
+h1, h2, h3, h4, h5, h6, h7{
+    color:#317eac;
+}
+
+.tableTitle{
+    padding-left:16px;
+    padding-right:15px;
+    margin-left:0px;
+}
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select
+ {
+    max-width: 280px;
+}
+textarea{
+    max-width:450px;
+}
+.pagination-container {
+  margin-bottom:25px;
+}
+
+/* Content General */
+.doc-no-top { padding-top: 50px; }
+.content-panel-title {
+	padding: 20px;
+	margin: 20px;
+	border-right: 1px solid rgba(147,147,147,0.5); }
+.content-panel {
+	padding: 20px;
+	margin: 20px;
+	min-height: 70px; }
+.content-image {
+	margin-bottom: 20px;
+	width: 100%; }
+.textarea-email{
+    width: 800px;
+	height: 180px;
+    }
+.btn-primary{
+    background-color: #555555;
+    border-color: #555555;
+    background-image:  linear-gradient(#04519b, #044687 60%, #033769);
+}
+.panel-title{
+    font-size:18px;
+    color:#317eac;
+}
+@media (min-width: 1500px) {
+  .container {
+    width: 1450px;
+  }
+}
+@media (min-width: 1800px) {
+  .container {
+    width: 1740px;
+  }
+}
