@@ -69,6 +69,7 @@ namespace BugTracker_The_Reckoning.Controllers
                 project.Manager = user;
                 user.Projects.Add(project);
                 db.Projects.Add(project);
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

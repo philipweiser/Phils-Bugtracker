@@ -12,9 +12,6 @@
 
 </div>
 <div class="row">
-    <div class="col-sm-1">
-
-    </div>
     <div class="col-sm-10">
         <p>
             @Html.ActionLink("Create New", "Create")
@@ -160,16 +157,8 @@
                                     <div class="btn-group btn-group-vertical" style="padding-top:20px">
                                         @if (User.IsInRole("Administrator") || User.IsInRole("Project Manager"))
                                         {
-                                            <span title="Edit Ticket"><em>@Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-default glyphicon glyphicon-pencil" })</em></span>
+                                            <span title="Edit Ticket"><em>@Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-default glyphicon glyphicon-pencil" })</em></span>
                                         }
-                                        <div class="col-md-2 column">
-                                            <div class="btn-group btn-group-vertical" style="padding-top:20px">
-                                                @if (User.IsInRole("Administrator") || User.IsInRole("Project Manager"))
-                                                {
-                                                    <span title="Edit Ticket"><em>@Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-default btn-primary glyphicon glyphicon-pencil" })</em></span>
-                                                }
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

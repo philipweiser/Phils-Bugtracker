@@ -73,44 +73,44 @@ namespace BugTracker_The_Reckoning.Controllers
                 tickets.AddRange(ticketsAvailable.Where(t => t.Description.Contains(searchStr)));
 
                 if (titleSearch == true)
-                    tickets.Union(ticketsAvailable.Where(t => t.Title.Contains(searchStr)));
+                    tickets.AddRange(ticketsAvailable.Where(t => t.Title.Contains(searchStr)));
                 if (nameSearch == true)
                 {
-                    tickets.Union(ticketsAvailable.Where(t => t.OwnerUser.FirstName.Contains(searchStr)));
-                    tickets.Union(ticketsAvailable.Where(t => t.OwnerUser.LastName.Contains(searchStr)));
+                    tickets.AddRange(ticketsAvailable.Where(t => t.OwnerUser.FirstName.Contains(searchStr)));
+                    tickets.AddRange(ticketsAvailable.Where(t => t.OwnerUser.LastName.Contains(searchStr)));
                 }
                 if (emailSearch == true)
-                    tickets.Union(ticketsAvailable.Where(t => t.OwnerUser.Email.Contains(searchStr)));
+                    tickets.AddRange(ticketsAvailable.Where(t => t.OwnerUser.Email.Contains(searchStr)));
                 if (projectSearch == true)
-                    tickets.Union(ticketsAvailable.Where(t => t.Project.Name.Contains(searchStr)));
+                    tickets.AddRange(ticketsAvailable.Where(t => t.Project.Name.Contains(searchStr)));
                 if (attachmentsSearch == true)
-                    tickets.Union(ticketsAvailable.Where(t => t.TicketAttachments.Any(ta => ta.Description.Contains(searchStr))));
+                    tickets.AddRange(ticketsAvailable.Where(t => t.TicketAttachments.Any(ta => ta.Description.Contains(searchStr))));
                 if (prioritySearch == true)
-                    tickets.Union(ticketsAvailable.Where(t => t.TicketPriority.Name.Contains(searchStr)));
+                    tickets.AddRange(ticketsAvailable.Where(t => t.TicketPriority.Name.Contains(searchStr)));
                 if (statusSearch == true)
-                    tickets.Union(ticketsAvailable.Where(t => t.TicketStatuses.Name.Contains(searchStr)));
+                    tickets.AddRange(ticketsAvailable.Where(t => t.TicketStatuses.Name.Contains(searchStr)));
                 if (typeSearch == true)
-                    tickets.Union(ticketsAvailable.Where(t => t.TicketTypes.Name.Contains(searchStr)));
+                    tickets.AddRange(ticketsAvailable.Where(t => t.TicketTypes.Name.Contains(searchStr)));
                 if (assignSearch == true)
                 {
                     try
                     {
-                        tickets.Union(ticketsAvailable.Where(t => t.AssignedUser.DisplayName.Contains(searchStr)));
+                        tickets.AddRange(ticketsAvailable.Where(t => t.AssignedUser.DisplayName.Contains(searchStr)));
                     }
                     catch { }
                     try
                     {
-                        tickets.Union(ticketsAvailable.Where(t => t.AssignedUser.FirstName.Contains(searchStr)));
+                        tickets.AddRange(ticketsAvailable.Where(t => t.AssignedUser.FirstName.Contains(searchStr)));
                     }
                     catch { }
                     try
                     {
-                        tickets.Union(ticketsAvailable.Where(t => t.AssignedUser.LastName.Contains(searchStr)));
+                        tickets.AddRange(ticketsAvailable.Where(t => t.AssignedUser.LastName.Contains(searchStr)));
                     }
                     catch { }
                     try
                     {
-                        tickets.Union(ticketsAvailable.Where(t => t.AssignedUser.UserName.Contains(searchStr)));
+                        tickets.AddRange(ticketsAvailable.Where(t => t.AssignedUser.UserName.Contains(searchStr)));
                     }
                     catch { }
 
