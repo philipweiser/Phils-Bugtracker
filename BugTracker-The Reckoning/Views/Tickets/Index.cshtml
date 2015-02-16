@@ -21,31 +21,31 @@
                     <div class="col-xs-10">
                         <table class="table table-striped">
                             <tr>
-                                <th>
+                                <th class="order">
                                     @Html.ActionLink("Submitted By", "Index", new { sortOrder = ViewBag.NameSortParm, searchStr = ViewBag.searchStr })
                                 </th>
-                                <th>
+                                <th class="order">
                                     @Html.ActionLink("Project Name", "Index", new { sortOrder = ViewBag.ProjectNameParm, searchStr = ViewBag.searchStr })
                                 </th>
-                                <th>
+                                <th class="order">
                                     @Html.ActionLink("Priority", "Index", new { sortOrder = ViewBag.TicketPriorityNameParm, searchStr = ViewBag.searchStr })
                                 </th>
-                                <th>
+                                <th class="order">
                                     @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.TicketStatusesNameParm, searchStr = ViewBag.searchStr })
                                 </th>
-                                <th>
+                                <th class="order">
                                     @Html.ActionLink("Type", "Index", new { sortOrder = ViewBag.TicketTypesNameParm, searchStr = ViewBag.searchStr })
                                 </th>
-                                <th>
+                                <th class="order">
                                     @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleParm, searchStr = ViewBag.searchStr })
                                 </th>
-                                <th>
+                                <th class="order">
                                     @Html.ActionLink("Created", "Index", new { sortOrder = ViewBag.CreatedParm, searchStr = ViewBag.searchStr })
                                 </th>
-                                <th>
+                                <th class="order">
                                     @Html.ActionLink("Updated", "Index", new { sortOrder = ViewBag.UpdatedParm, searchStr = ViewBag.searchStr })
                                 </th>
-                                <th>
+                                <th class="order">
                                     @Html.ActionLink("Assigned Developer", "Index", new { sortOrder = ViewBag.AssignedParm, searchStr = ViewBag.searchStr })
                                 </th>
                             </tr>
@@ -60,31 +60,31 @@
                             <div style="font-size:12px">
                                 <table class="table table-striped" cellspacing="10">
                                     <tr>
-                                        <td>
+                                        <td class="order">
                                             @Html.DisplayFor(modelItem => item.OwnerUser.FirstName)
                                         </td>
-                                        <td>
+                                        <td class="order">
                                             @Html.DisplayFor(modelItem => item.Project.Name)
                                         </td>
-                                        <td>
+                                        <td class="order">
                                             @Html.DisplayFor(modelItem => item.TicketPriority.Name)
                                         </td>
-                                        <th>
+                                        <td class="order">
                                             @Html.DisplayFor(modelItem => item.TicketStatuses.Name)
-                                        </th>
-                                        <td>
+                                        </td>
+                                        <td class="order">
                                             @Html.DisplayFor(modelItem => item.TicketTypes.Name)
                                         </td>
-                                        <td>
+                                        <td class="order">
                                             @Html.DisplayFor(modelItem => item.Title)
                                         </td>
-                                        <td>
+                                        <td class="order">
                                             @Html.DisplayFor(modelItem => item.Created)
                                         </td>
-                                        <td>
+                                        <td class="order">
                                             @Html.DisplayFor(modelItem => item.Updated)
                                         </td>
-                                        <td>
+                                        <td class="order">
                                             @Html.DisplayFor(modelItem => item.AssignedUser.DisplayName)
                                         </td>
                                     </tr>

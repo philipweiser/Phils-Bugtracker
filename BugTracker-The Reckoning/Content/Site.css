@@ -73,5 +73,10 @@ textarea{
   width: 100%;
 }
 .td order{
-    width:12.5%;
+    width:10%;
+    max-width:10%;
+}
+.th order{
+    width:10%;
+    max-width:10%;
 }
