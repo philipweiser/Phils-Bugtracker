@@ -80,7 +80,39 @@
 
 </div>
 <div class="row">
-    <div class="col-md-8 class table-bordered">
+    <div class="col-md-6 table-bordered">
+        <h4>Ticket Comments</h4>
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Comment
+                </th>
+                <th>
+                    Created
+                </th>
+            </tr>
+            @foreach (var item in Model.TicketComments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Creator.DisplayName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Created)
+                    </td>
+                </tr>
+            }
+        </table>
+        @Html.ActionLink("Add a Comment", "Create", "TicketComments", new { TicketId = Model.Id }, null)
+    </div>
+
+    <div class="col-md-6 class table-bordered">
         <h4>Ticket Attachments</h4>
         <table class="table table-striped">
             <tr>
@@ -126,38 +158,43 @@
         </div>
 
 
-        <div class="col-md-4 table-bordered">
-            <h4>Ticket Comments</h4>
-            <table class="table table-striped">
+        
+    <div class="col-md-6 table-bordered">
+        <h4>Ticket History</h4>
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    Ticket
+                </th>
+                <th>
+                    Property
+                </th>
+                <th>
+                    Old Value
+                </th>
+                <th>
+                    New Value
+                </th>
+            </tr>
+            @foreach (var item in Model.TicketHistories)
+            {
                 <tr>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Comment
-                    </th>
-                    <th>
-                        Created
-                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ticket)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Property)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OldValue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NewValue)
+                    </td>
                 </tr>
-                @foreach (var item in Model.TicketComments)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Creator.DisplayName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Comment)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Created)
-                        </td>
-                    </tr>
-                }
+            }
+        </table>
+    </div>
 
-            </table>
-            @Html.ActionLink("Add a Comment", "Create", "TicketComments", new { TicketId = Model.Id }, null)
-
-        </div>
     </div>
 
