@@ -1,0 +1,99 @@
+﻿@model BugTracker_The_Reckoning.Models.Project
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        @foreach (var item in Model.Tickets)
+        {
+            <dt>
+            @item.OwnerUser.FirstName
+        </dt>
+
+        <dd>
+            @item.OwnerUser.FirstName
+        </dd>
+
+        <dt>
+            Project
+        </dt>
+
+        <dd>
+            @item.Project.Name
+        </dd>
+
+        <dt>
+            Priority
+        </dt>
+
+        <dd>
+            @item.TicketPriority.Name
+        </dd>
+
+        <dt>
+            Status
+        </dt>
+
+        <dd>
+            @item.TicketStatuses.Name
+        </dd>
+
+        <dt>
+            Ticket Type
+        </dt>
+
+        <dd>
+            @item.TicketTypes.Name
+        </dd>
+
+        <dt>
+            @item.Title
+        </dt>
+
+        <dd>
+            @item.Title
+        </dd>
+
+        <dt>
+            @item.Description
+        </dt>
+
+        <dd>
+            @item.Description
+        </dd>
+
+        <dt>
+            @item.Created
+        </dt>
+
+        <dd>
+            @item.Created
+        </dd>
+
+        <dt>
+            @item.Updated
+        </dt>
+
+        <dd>
+            @item.Updated
+        </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
