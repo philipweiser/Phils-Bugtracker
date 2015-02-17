@@ -123,190 +123,190 @@ namespace BugTracker_The_Reckoning.Models.Migrations
 
 
 
-            if (context.Projects.Count() == 0)
-            {
-                var projects = new List<Project>
-            {
-            new Project { Name = "The Big Lebowski" },
-            new Project { Name = "Peterkin" },
-            new Project { Name = "Ferris" },
-            new Project { Name = "Newman" },
-            new Project { Name = "Kramer" }
-            };
-                projects.ForEach(p => context.Projects.Add(p));
-                context.SaveChanges();
+            //if (context.Projects.Count() == 0)
+            //{
+            //    var projects = new List<Project>
+            //{
+            //new Project { Name = "The Big Lebowski" },
+            //new Project { Name = "Peterkin" },
+            //new Project { Name = "Ferris" },
+            //new Project { Name = "Newman" },
+            //new Project { Name = "Kramer" }
+            //};
+            //    projects.ForEach(p => context.Projects.Add(p));
+            //    context.SaveChanges();
 
-                var types = new List<TicketType>
-            {
-            new TicketType { Name = "Bug" },
-            new TicketType { Name = "Featue request" },
-            new TicketType { Name = "Improvement" }
-            };
-                types.ForEach(t => context.TicketTypes.Add(t));
-                context.SaveChanges();
+            //    var types = new List<TicketType>
+            //{
+            //new TicketType { Name = "Bug" },
+            //new TicketType { Name = "Featue request" },
+            //new TicketType { Name = "Improvement" }
+            //};
+            //    types.ForEach(t => context.TicketTypes.Add(t));
+            //    context.SaveChanges();
 
-                var priorities = new List<TicketPriority>
-                {
-                    new TicketPriority {Name = "Critical"},
-                    new TicketPriority {Name = "Low"}
-                };
-            priorities.ForEach(s => context.TicketPriorities.Add(s));
-            context.SaveChanges();
+            //    var priorities = new List<TicketPriority>
+            //    {
+            //        new TicketPriority {Name = "Critical"},
+            //        new TicketPriority {Name = "Low"}
+            //    };
+            //priorities.ForEach(s => context.TicketPriorities.Add(s));
+            //context.SaveChanges();
 
-                var status = new List<TicketStatus>
-            {
-                new TicketStatus { Name = "Not started" },
-                new TicketStatus { Name = "In progess" },
-                new TicketStatus { Name = "Completed" }
-            };
-                status.ForEach(s => context.TicketStatuses.Add(s));
-                context.SaveChanges();
+            //    var status = new List<TicketStatus>
+            //{
+            //    new TicketStatus { Name = "Not started" },
+            //    new TicketStatus { Name = "In progess" },
+            //    new TicketStatus { Name = "Completed" }
+            //};
+            //    status.ForEach(s => context.TicketStatuses.Add(s));
+            //    context.SaveChanges();
 
-                context.SaveChanges();
-                var project = projects.Find(p => p.Name == "The Big Lebowski").Id;
-                var project2 = projects.Find(p => p.Name == "Peterkin").Id;
-                var project3 = projects.Find(p => p.Name == "Ferris").Id;
-                var project4 = projects.Find(p => p.Name == "Newman").Id;
-                var project5 = projects.Find(p => p.Name == "Kramer").Id;
+            //    context.SaveChanges();
+            //    var project = projects.Find(p => p.Name == "The Big Lebowski").Id;
+            //    var project2 = projects.Find(p => p.Name == "Peterkin").Id;
+            //    var project3 = projects.Find(p => p.Name == "Ferris").Id;
+            //    var project4 = projects.Find(p => p.Name == "Newman").Id;
+            //    var project5 = projects.Find(p => p.Name == "Kramer").Id;
 
-                var tickets = new List<Ticket>
-            {
+            //    var tickets = new List<Ticket>
+            //{
 
-            new Ticket {
-            Title = "Search is broken",
-            Description = "The search never returns results",
-            Created = System.DateTimeOffset.Now,
-            ProjectId = project,
-            TicketTypeId = 1,
-            TicketStatusId = 1,
-            TicketPriorityId = 2,
-            OwnerUserId = userId,
-            },
-            new Ticket {
-            Title = "Can't attach a file to a ticket",
-            Description = "I get an error undefined everytinme",
-            Created = System.DateTimeOffset.Now,
-            ProjectId = project2,
-            TicketTypeId = 2,
-            TicketStatusId = 2,
-            TicketPriorityId = 2,
-            OwnerUserId = userId,
+            //new Ticket {
+            //Title = "Search is broken",
+            //Description = "The search never returns results",
+            //Created = System.DateTimeOffset.Now,
+            //ProjectId = project,
+            //TicketTypeId = 1,
+            //TicketStatusId = 1,
+            //TicketPriorityId = 2,
+            //OwnerUserId = userId,
+            //},
+            //new Ticket {
+            //Title = "Can't attach a file to a ticket",
+            //Description = "I get an error undefined everytinme",
+            //Created = System.DateTimeOffset.Now,
+            //ProjectId = project2,
+            //TicketTypeId = 2,
+            //TicketStatusId = 2,
+            //TicketPriorityId = 2,
+            //OwnerUserId = userId,
 
-            },
-            new Ticket {
-            Title = "Can't reassign a ticket",
-            Description = "The drop down of users doesn't populate",
-            Created = System.DateTimeOffset.Now,
-            ProjectId = project3,
-            TicketTypeId = 3,
-            TicketStatusId = 3,
-            TicketPriorityId = 1,
-            OwnerUserId = userId,
+            //},
+            //new Ticket {
+            //Title = "Can't reassign a ticket",
+            //Description = "The drop down of users doesn't populate",
+            //Created = System.DateTimeOffset.Now,
+            //ProjectId = project3,
+            //TicketTypeId = 3,
+            //TicketStatusId = 3,
+            //TicketPriorityId = 1,
+            //OwnerUserId = userId,
 
-            },
-            new Ticket {
-            Title = "Can't change status of a ticket",
-            Description = "Error every time",
-            Created = System.DateTimeOffset.Now,
-            ProjectId = project4,
-            TicketTypeId = 1,
-            TicketStatusId = 1,
-            TicketPriorityId = 1,
-            OwnerUserId = userId,
+            //},
+            //new Ticket {
+            //Title = "Can't change status of a ticket",
+            //Description = "Error every time",
+            //Created = System.DateTimeOffset.Now,
+            //ProjectId = project4,
+            //TicketTypeId = 1,
+            //TicketStatusId = 1,
+            //TicketPriorityId = 1,
+            //OwnerUserId = userId,
 
-            },
-            new Ticket {
-            Title = "Can't create a new project",
-            Description = "Validation error",
-            Created = System.DateTimeOffset.Now,
-            ProjectId = project5,
-            TicketTypeId = 1,
-            TicketStatusId = 1,
-            TicketPriorityId = 1,
-            OwnerUserId = userId,
+            //},
+            //new Ticket {
+            //Title = "Can't create a new project",
+            //Description = "Validation error",
+            //Created = System.DateTimeOffset.Now,
+            //ProjectId = project5,
+            //TicketTypeId = 1,
+            //TicketStatusId = 1,
+            //TicketPriorityId = 1,
+            //OwnerUserId = userId,
 
-            },
-            new Ticket {
-            Title = "Can't assign users to a ticket",
-            Description = "Drop down list doesn't populate",
-            Created = System.DateTimeOffset.Now,
-            ProjectId = project5,
-            TicketTypeId = 1,
-            TicketStatusId = 1,
-            TicketPriorityId = 1,
-            OwnerUserId = userId,
+            //},
+            //new Ticket {
+            //Title = "Can't assign users to a ticket",
+            //Description = "Drop down list doesn't populate",
+            //Created = System.DateTimeOffset.Now,
+            //ProjectId = project5,
+            //TicketTypeId = 1,
+            //TicketStatusId = 1,
+            //TicketPriorityId = 1,
+            //OwnerUserId = userId,
 
-            },
-            new Ticket {
-            Title = "Sorting of rows not working",
-            Description = "When you click on a row nothing happens",
-            Created = System.DateTimeOffset.Now,
-            ProjectId = project4,
-            TicketTypeId = 1,
-            TicketStatusId = 1,
-            TicketPriorityId = 1,
-            OwnerUserId = userId,
+            //},
+            //new Ticket {
+            //Title = "Sorting of rows not working",
+            //Description = "When you click on a row nothing happens",
+            //Created = System.DateTimeOffset.Now,
+            //ProjectId = project4,
+            //TicketTypeId = 1,
+            //TicketStatusId = 1,
+            //TicketPriorityId = 1,
+            //OwnerUserId = userId,
 
-            },
-            new Ticket {
-            Title = "Create new ticket",
-            Description = "Need a textarea for description",
-            Created = System.DateTimeOffset.Now,
-            ProjectId = project3,
-            TicketTypeId = 1,
-            TicketStatusId = 1,
-            TicketPriorityId = 1,
-            OwnerUserId = userId,
+            //},
+            //new Ticket {
+            //Title = "Create new ticket",
+            //Description = "Need a textarea for description",
+            //Created = System.DateTimeOffset.Now,
+            //ProjectId = project3,
+            //TicketTypeId = 1,
+            //TicketStatusId = 1,
+            //TicketPriorityId = 1,
+            //OwnerUserId = userId,
 
-            },
-            new Ticket {
-            Title = "Timestamps are editable",
-            Description = "Really? How convenient",
-            Created = System.DateTimeOffset.Now,
-            ProjectId = project2,
-            TicketTypeId = 1,
-            TicketStatusId = 1,
-            TicketPriorityId = 1,
-            OwnerUserId = userId,
+            //},
+            //new Ticket {
+            //Title = "Timestamps are editable",
+            //Description = "Really? How convenient",
+            //Created = System.DateTimeOffset.Now,
+            //ProjectId = project2,
+            //TicketTypeId = 1,
+            //TicketStatusId = 1,
+            //TicketPriorityId = 1,
+            //OwnerUserId = userId,
 
-            },
-            new Ticket {
-            Title = "Save after editing broken",
-            Description = "More validation errors",
-            Created = System.DateTimeOffset.Now,
-            ProjectId = project,
-            TicketTypeId = 1,
-            TicketStatusId = 1,
-            TicketPriorityId = 1,
-            OwnerUserId = userId,
+            //},
+            //new Ticket {
+            //Title = "Save after editing broken",
+            //Description = "More validation errors",
+            //Created = System.DateTimeOffset.Now,
+            //ProjectId = project,
+            //TicketTypeId = 1,
+            //TicketStatusId = 1,
+            //TicketPriorityId = 1,
+            //OwnerUserId = userId,
 
-            },
-            };
-                tickets.ForEach(t => t.AssignedUser = context.Users.First(u => u.Id == userId));
-                tickets.ForEach(t => context.Tickets.Add(t));
-                var notifications = new List<TicketNotification>
-                {
-                    new TicketNotification{ TicketId = 1, UserId = userId}
-                };
-                notifications.ForEach(n => context.TicketNotifications.Add(n));
-                context.SaveChanges();
+            //},
+            //};
+            //    tickets.ForEach(t => t.AssignedUser = context.Users.First(u => u.Id == userId));
+            //    tickets.ForEach(t => context.Tickets.Add(t));
+            //    var notifications = new List<TicketNotification>
+            //    {
+            //        new TicketNotification{ TicketId = 1, UserId = userId}
+            //    };
+            //    notifications.ForEach(n => context.TicketNotifications.Add(n));
+            //    context.SaveChanges();
 
-                var histories = new List<TicketHistory>{
-                    new TicketHistory{TicketId = 1, Property = "Title", OldValue = "Old Title", NewValue = "New Title", Changed = DateTimeOffset.Now, UserId = userId}
-                };
-                histories.ForEach(h => context.TicketHistories.Add(h));
-                var User = context.Users.Single(u => u.Email == "philipkrw@gmail.com");
+            //    var histories = new List<TicketHistory>{
+            //        new TicketHistory{TicketId = 1, Property = "Title", OldValue = "Old Title", NewValue = "New Title", Changed = DateTimeOffset.Now, UserId = userId}
+            //    };
+            //    histories.ForEach(h => context.TicketHistories.Add(h));
+            //    var User = context.Users.Single(u => u.Email == "philipkrw@gmail.com");
 
-                User.Projects.Concat(projects);
-                //foreach (Project proj in User.Projects)
-                //{
-                //    proj.Members.Add(User);
-                //}
-                context.Entry(User).State = EntityState.Modified;
-                context.SaveChanges();
+            //    User.Projects.Concat(projects);
+            //    //foreach (Project proj in User.Projects)
+            //    //{
+            //    //    proj.Members.Add(User);
+            //    //}
+            //    context.Entry(User).State = EntityState.Modified;
+            //    context.SaveChanges();
 
-                var User2 = context.Users.Single(u => u.Email == "philipkrw@gmail.com").Projects.ToList();
-            }
+            //    var User2 = context.Users.Single(u => u.Email == "philipkrw@gmail.com").Projects.ToList();
+            //}
         }
     }
 }

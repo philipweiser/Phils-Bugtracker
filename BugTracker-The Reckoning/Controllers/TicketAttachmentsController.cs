@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using BugTracker_The_Reckoning.Models;
+using System.IO;
 
 namespace BugTracker_The_Reckoning.Controllers
 {
@@ -51,19 +52,32 @@ namespace BugTracker_The_Reckoning.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TicketId,UserId,FilePath,Description,Created,FileUrl")] TicketAttachment ticketAttachment)
+        public ActionResult Create([Bind(Include = "Title,Body,MediaURL")] Post post,
+            HttpPostedFileBase fileUpload)
         {
+            var file = Request.Files;
+
             if (ModelState.IsValid)
             {
-                ticketAttachment.UserId=User.Identity.GetUserId();
-                ticketAttachment.Created = DateTimeOffset.Now;
-                db.TicketAttachments.Add(ticketAttachment);
+                //restricting to valid image uploads, only
+                if (fileUpload != null && fileUpload.ContentLength > 0)
+                {
+                    if (!fileUpload.ContentType.Contains("image"))
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.UnsupportedMediaType);
+                    }
+                    var fileName = Path.GetFileName(fileUpload.FileName);
+                    fileUpload.SaveAs(Path.Combine(Server.MapPath("~/img/blog/"), fileName));
+                    post.MediaURL = "/img/blog/" + fileName;
+                }
+
+                post.Created = new DateTimeOffset(DateTime.Now);
+                db.Posts.Add(post);
                 db.SaveChanges();
-                return RedirectToAction("Details", "Tickets", new { Id= ticketAttachment.TicketId });
+                return RedirectToAction("Index");
             }
 
-            ViewBag.TicketId = new SelectList(db.Tickets, "Id", "Title", ticketAttachment.TicketId);
-            return View(ticketAttachment);
+            return View(post);
         }
 
         // GET: TicketAttachments/Edit/5
