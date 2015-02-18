@@ -76,8 +76,9 @@ namespace BugTracker_The_Reckoning.Controllers
                             fileName = count + fileName;
                         }
                     }
-                    theAtt.FileUrl = Path.Combine(Server.MapPath("~/Content/uploads/"), fileName);
-                    fileUpload.SaveAs(theAtt.FileUrl);
+                    var thePath = Path.Combine(Server.MapPath("~/Content/uploads/"), fileName);
+                    theAtt.FileUrl = "/Content/uploads/" + fileName;
+                    fileUpload.SaveAs(thePath);
                 }
 
                 theAtt.Created = new DateTimeOffset(DateTime.Now);
