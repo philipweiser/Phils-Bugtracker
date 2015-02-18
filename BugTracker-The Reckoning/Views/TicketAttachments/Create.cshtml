@@ -13,10 +13,9 @@
     @Html.HiddenFor(model => model.TicketId)
 
     <div class="form-horizontal">
-        <h4>TicketAttachment</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h4>TicketAttachment</h4>
         @if (@Html.DisplayFor(model => model.FileUrl) != null)
         {
             <div class="col-md-7"><p>@Html.DisplayFor(model => model.FileUrl)</p></div>
@@ -29,30 +28,33 @@
             <div class="col-md-12"><p>@Html.DisplayFor(model => model.FileUrl)</p></div>
         }
 
-        
-        <div class="form-group">
-            @Html.Label("Image Upload", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" id="fileUpload" name="fileUpload" class=" btn btn-primary form-control" />
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.Label("Attachment Description", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Description, 8, 100, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    @Html.Label("Image Upload", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" id="fileUpload" name="fileUpload" class=" btn btn-primary form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Attachment Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Description, 8, 100, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default btn-primary btn-large" />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default btn-primary btn-large" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Details/"+Model.TicketId, "Tickets")
 </div>
 
 @section Scripts {

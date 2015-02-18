@@ -295,7 +295,7 @@ namespace BugTracker_The_Reckoning.Controllers
             ViewBag.TicketTypeId = new SelectList(db.TicketTypes, "Id", "Name", ticket.TicketTypeId);
             return View(ticket);
         }
-        private void updateHistory(string property, Ticket old, Ticket current, string oldProp, string newProp)
+        public void updateHistory(string property, Ticket old, Ticket current, string oldProp, string newProp)
         {
             db.TicketHistories.Add(new TicketHistory()
             {
@@ -354,7 +354,7 @@ namespace BugTracker_The_Reckoning.Controllers
         [Authorize(Roles = "Administrator, Project Manager, Developer, Submitter")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Created,Description,ProjectId,OwnerUserId,TicketPriorityId,TicketStatusId,TicketTypeId")] Ticket ticket)
+        public ActionResult Edit([Bind(Include = "Id,Title,Created,Description,ProjectId,OwnerUserId,TicketPriorityId,TicketStatusId,TicketTypeId,AssignedUser,AssignedUserId")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {

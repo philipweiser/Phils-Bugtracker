@@ -85,7 +85,19 @@ namespace BugTracker_The_Reckoning.Controllers
                 theAtt.UserId = User.Identity.GetUserId();
                 db.TicketAttachments.Add(theAtt);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                var th = new TicketHistory()
+                {
+                    TicketId = theAtt.TicketId,
+                    UserId = User.Identity.GetUserId(),
+                    Property = "New Ticket Attachment",
+                    OldValue = "",
+                    NewValue = theAtt.Description,
+                    Changed = DateTimeOffset.Now,
+                };
+                db.TicketHistories.Add(th);
+                db.Tickets.Find(theAtt.TicketId).TicketHistories.Add(th);
+                db.SaveChanges();
+                return RedirectToAction("Details/"+theAtt.TicketId, "Tickets");
             }
             return View(theAtt);
         }

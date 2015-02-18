@@ -36,12 +36,12 @@ namespace BugTracker_The_Reckoning.Controllers
             }
             return View(ticketComment);
         }
-
         // GET: TicketComments/Create
         public ActionResult Create(int TicketId)
         {
             TicketComment ticketComment = new TicketComment();
             ticketComment.TicketId = TicketId;
+            db.SaveChanges();
             return View(ticketComment);
         }
         // POST: TicketComments/Create
@@ -55,6 +55,17 @@ namespace BugTracker_The_Reckoning.Controllers
             {   ticketComment.User=db.Users.Find(User.Identity.GetUserId());
                 ticketComment.Created = DateTimeOffset.Now;
                 db.TicketComments.Add(ticketComment);
+                var th = new TicketHistory()
+                {
+                    TicketId = ticketComment.TicketId,
+                    UserId = User.Identity.GetUserId(),
+                    Property = "New Ticket Comment",
+                    OldValue = "",
+                    NewValue = Scripts.ExtensionMethod.Truncate(ticketComment.Comment, 20) + "...",
+                    Changed = DateTimeOffset.Now,
+                };
+                db.TicketHistories.Add(th);
+                db.Tickets.Find(ticketComment.TicketId).TicketHistories.Add(th);
                 db.SaveChanges();
                 return RedirectToAction("Details", "Tickets", new { Id = ticketComment.TicketId });
             }
@@ -98,32 +109,6 @@ namespace BugTracker_The_Reckoning.Controllers
             return View(ticketComment);
         }
 
-        // GET: TicketComments/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TicketComment ticketComment = db.TicketComments.Find(id);
-            if (ticketComment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ticketComment);
-        }
-
-        // POST: TicketComments/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TicketComment ticketComment = db.TicketComments.Find(id);
-            db.TicketComments.Remove(ticketComment);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -133,4 +118,5 @@ namespace BugTracker_The_Reckoning.Controllers
             base.Dispose(disposing);
         }
     }
+            
 }

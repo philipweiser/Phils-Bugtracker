@@ -79,9 +79,7 @@
 </div>
 
 <br />
-<div class="row">
 
-</div>
 <div class="row">
     <div class="col-md-6 table-bordered">
         <h4>Ticket Comments</h4>
@@ -101,7 +99,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.User)
+                        @Html.DisplayFor(modelItem => item.User.DisplayName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Comment)
@@ -115,79 +113,80 @@
         @Html.ActionLink("Add a Comment", "Create", "TicketComments", new { TicketId = Model.Id }, null)
     </div>
 
-    <div class="col-md-6 class table-bordered">
-        <h4>Ticket Attachments</h4>
-        <table class="table table-striped">
-            <tr>
-                <th>
-                    Description
-                </th>
-                <th>
-                    Created
-                </th>
-                <th>
-                    Attached By
-                </th>
-                <th>
-                    FileUrl
-                </th>
-            </tr>
-            @foreach (var item in Model.TicketAttachments)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Created)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.User.DisplayName)
-                    </td>
-                    <td>
-                        <a href=@item.FileUrl>
-                            @Html.DisplayFor(modelItem => item.FileUrl)
-                        </a>
-                    </td>
-                </tr>
-            }
-            </table>
-        @Html.ActionLink("Add an Attachment", "Create", "TicketAttachments", new { TicketId = Model.Id }, null)
-
+    <div class="col-xs-6">
+        <div class="row">
+            <div class="col-xs-12 class table-bordered">
+                <h4>Ticket Attachments</h4>
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Created
+                        </th>
+                        <th>
+                            Attached By
+                        </th>
+                        <th>
+                            FileUrl
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.TicketAttachments)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.DisplayName)
+                            </td>
+                            <td>
+                                <a href=@item.FileUrl>
+                                    @Html.DisplayFor(modelItem => item.FileUrl)
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                @Html.ActionLink("Add an Attachment", "Create", "TicketAttachments", new { TicketId = Model.Id }, null)
+            </div>
+                <div class="col-xs-12 table-bordered">
+                    <h4>Ticket History</h4>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Property
+                            </th>
+                            <th>
+                                Old Value
+                            </th>
+                            <th>
+                                New Value
+                            </th>
+                        </tr>
+                        @foreach (var item in Model.TicketHistories.OrderBy(c=>c.Changed))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Property)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OldValue)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NewValue)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            
         </div>
-
-
-        
-    <div class="col-md-6 table-bordered">
-        <h4>Ticket History</h4>
-        <table class="table table-striped">
-            <tr>
-                <th>
-                    Property
-                </th>
-                <th>
-                    Old Value
-                </th>
-                <th>
-                    New Value
-                </th>
-            </tr>
-            @foreach (var item in Model.TicketHistories)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Property)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OldValue)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NewValue)
-                    </td>
-                </tr>
-            }
-        </table>
     </div>
 
-    </div>
 
+</div>
