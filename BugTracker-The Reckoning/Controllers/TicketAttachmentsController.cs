@@ -48,11 +48,9 @@ namespace BugTracker_The_Reckoning.Controllers
         }
 
         // POST: TicketAttachments/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Body,MediaURL")] Post post,
+        public ActionResult Create([Bind(Include = "TicketId,Title,Body,Description,FileUrl")] TicketAttachment theAtt,
             HttpPostedFileBase fileUpload)
         {
             var file = Request.Files;
@@ -67,17 +65,28 @@ namespace BugTracker_The_Reckoning.Controllers
                         return new HttpStatusCodeResult(HttpStatusCode.UnsupportedMediaType);
                     }
                     var fileName = Path.GetFileName(fileUpload.FileName);
-                    fileUpload.SaveAs(Path.Combine(Server.MapPath("~/img/blog/"), fileName));
-                    post.MediaURL = "/img/blog/" + fileName;
+                    if (System.IO.File.Exists(fileName))
+                    {
+                        int count = 1;
+                        while (System.IO.File.Exists(count++ + fileName))
+                        {
+                        }
+                        if (count > 1)
+                        {
+                            fileName = count + fileName;
+                        }
+                    }
+                    theAtt.FileUrl = Path.Combine(Server.MapPath("~/Content/uploads/"), fileName);
+                    fileUpload.SaveAs(theAtt.FileUrl);
                 }
 
-                post.Created = new DateTimeOffset(DateTime.Now);
-                db.Posts.Add(post);
+                theAtt.Created = new DateTimeOffset(DateTime.Now);
+                theAtt.UserId = User.Identity.GetUserId();
+                db.TicketAttachments.Add(theAtt);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(post);
+            return View(theAtt);
         }
 
         // GET: TicketAttachments/Edit/5
@@ -105,7 +114,6 @@ namespace BugTracker_The_Reckoning.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ticketAttachment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

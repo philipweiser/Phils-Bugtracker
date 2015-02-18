@@ -64,6 +64,7 @@
             </tr>
         </table>
         <div class="row">
+        <h2>Description</h2>
             <div class="textarea table table-striped col-xs-12">
                 @Html.DisplayFor(modelItem => Model.Description)
             </div>
@@ -98,7 +99,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Creator.DisplayName)
+                        @Html.DisplayFor(modelItem => item.User)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Comment)
@@ -117,9 +118,6 @@
         <table class="table table-striped">
             <tr>
                 <th>
-                    FilePath
-                </th>
-                <th>
                     Description
                 </th>
                 <th>
@@ -136,19 +134,18 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FilePath)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)  
+                        @Html.DisplayFor(modelItem => item.Description)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Created)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Owner.DisplayName)
+                        @Html.DisplayFor(modelItem => item.User.DisplayName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FileUrl)
+                        <a href=@item.FileUrl>
+                            @Html.DisplayFor(modelItem => item.FileUrl)
+                        </a>
                     </td>
                 </tr>
             }
@@ -164,9 +161,6 @@
         <table class="table table-striped">
             <tr>
                 <th>
-                    Ticket
-                </th>
-                <th>
                     Property
                 </th>
                 <th>
@@ -179,9 +173,6 @@
             @foreach (var item in Model.TicketHistories)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Ticket)
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Property)
                     </td>

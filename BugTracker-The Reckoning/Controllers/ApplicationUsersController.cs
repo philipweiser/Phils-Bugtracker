@@ -93,7 +93,8 @@ namespace BugTracker_The_Reckoning.Controllers
 
             // send a list of projects, tickets, roles the user is on
             var roles = new List<IdentityRole>();
-            foreach (var rol in db.Roles)
+            var theRoles = db.Roles.ToList();
+            foreach (var rol in theRoles)
             {
                 if (!theUser.Roles.Any(r => r.RoleId == rol.Id))
                 {

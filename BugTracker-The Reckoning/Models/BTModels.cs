@@ -25,7 +25,7 @@ namespace BugTracker_The_Reckoning.Models
         [Display(Name = "File Url")]
         public string FileUrl { get; set; }
         public virtual Ticket Ticket { get; set; }
-        public virtual ApplicationUser Owner { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
     public class TicketComment 
     {
@@ -37,7 +37,7 @@ namespace BugTracker_The_Reckoning.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTimeOffset Created { get; set; }
         public virtual Ticket Ticket { get; set; }
-        public virtual ApplicationUser Creator { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
     public class TicketHistory 
     {
@@ -52,6 +52,7 @@ namespace BugTracker_The_Reckoning.Models
         [Display(Name = "New Value")]
         public string NewValue { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:mm/dd/yyyy}")]
+        public virtual ApplicationUser User { get; set; }
         public Nullable<DateTimeOffset> Changed { get; set; }
     }
     public class TicketNotification 
