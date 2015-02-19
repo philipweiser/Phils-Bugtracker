@@ -1,0 +1,40 @@
+﻿@model PagedList.IPagedList<BugTracker_The_Reckoning.Models.TicketPriority>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Ticket Priorities";
+}
+<h2>Ticket Priorities List</h2>
+<p>
+    @Html.ActionLink("New Priority", "Create")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.ActionLink("Sort By Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th></th>
+    </tr>
+</table>
+<div class="row">
+    @if (Model != null)
+    {
+        <div class="col-sm-12">
+           
+                @foreach (var item in Model)
+                {
+                    string theHref = "../TicketPriorities/Edit/" + item.Id;
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span title="Edit Type"><em>@Html.ActionLink(@item.Name, theHref, "TicketPriority", new { @class = "btn btn-primary tps", style = "width:100%; margin-bottom:4px;" })</em></span>
+                        </div>
+                    </div>
+                }
+        </div>
+    }
+</div>
+<div class="row">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.sortOrder }))
+</div>

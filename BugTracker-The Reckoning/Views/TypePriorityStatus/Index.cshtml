@@ -1,0 +1,12 @@
+﻿@model BugTracker_The_Reckoning.Models.TypePriorityStatus
+<div class="row">
+    <div class="col-sm-4">
+        @Html.Partial("_Types", Model.types)
+    </div>
+    <div class="col-sm-4">
+        @Html.Partial("_Priorities", Model.priorities)
+    </div>
+    <div class="col-sm-4">
+        @Html.Partial("_Statuses", Model.statuses)
+    </div>
+</div>

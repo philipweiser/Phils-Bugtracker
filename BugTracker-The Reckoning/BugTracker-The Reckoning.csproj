@@ -187,6 +187,7 @@
     <Compile Include="Controllers\TicketStatusController.cs" />
     <Compile Include="Controllers\TicketTypesController.cs" />
     <Compile Include="Controllers\TourController.cs" />
+    <Compile Include="Controllers\TypePriorityStatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -501,6 +502,10 @@
     <Content Include="Views\Account\EmailConfirmationSent.cshtml" />
     <Content Include="Views\Tour\Index.cshtml" />
     <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\TypePriorityStatus\Index.cshtml" />
+    <Content Include="Views\TypePriorityStatus\_Types.cshtml" />
+    <Content Include="Views\TypePriorityStatus\_Priorities.cshtml" />
+    <Content Include="Views\TypePriorityStatus\_Statuses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

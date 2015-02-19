@@ -32,7 +32,6 @@ textarea{
 .pagination-container {
   margin-bottom:25px;
 }
-
 /* Content General */
 .doc-no-top { padding-top: 50px; }
 .content-panel-title {
@@ -57,7 +56,12 @@ textarea{
 }
 .panel-title{
     font-size:18px;
-    color:#317eac;
+    color:#ffffff;
+}
+.panel-default > .panel-heading {
+  color: #ffffff;
+  background-image: linear-gradient(#04519b, #044687 60%, #033769);
+  border-color: #317eac;
 }
 @media (min-width: 1500px) {
   .container {
@@ -68,4 +72,35 @@ textarea{
   .container {
     width: 1740px;
   }
+}
+.jumbotron{
+    background-color: #bbbbbb;
+}
+.logo{
+    min-height:40px;
+    height:auto;
+    max-height:180px;
+    min-width:40px;
+    width:auto;
+    max-width:100%;
+}
+@media (min-width: 1200px) {
+.navbar-nav > li > a{
+    font-size:14px;
+    padding-left:8px;
+    padding-right:8px;
+  }
+}
+@media (min-width: 1200px) {
+.navbar-nav > li > a{
+    font-size:16px;
+    padding-left:15px;
+    padding-right:15px;
+  }
+}
+.navbar-toggle{
+    background-color:#bbbbbb;
+}
+.tps{
+    font-size:18px;
 }
