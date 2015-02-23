@@ -11,20 +11,28 @@
 tourStates = [
 	{
 	    title: 'Welcome to BugTracker',
-	    html: 'Ready to take a quick tour of BugTracker?',
+	    html: 'Are you ready to begin the tour?',
 	    buttons: { Next: 1 },
 	    focus: 0,
-	    position: { container: $('#Start'), x: 370, y: 120, width: 275, arrow: 'lt' },
+	    position: { container: $('#Start'), x: 370, y: 120, width: 275},
 	    submit: tourSubmitFunc
 	},
 	{
-	    title: 'Users',
-	    html: 'BugTracker (BT) software begins with the registration of users and roles:  Administrator, Project Manager, Developer, or Submitter.',
+	    title: 'Registration',
+	    html: 'Security is important. BugTracker requires users to register on the site.  New users are only allowed to create tickets.',
 	    buttons: { Prev: -1, Next: 1 },
 	    focus: 0,
-	    position: { container: $('#Users'), x: 180, y: 130, width: 400, arrow: 'br' },
+	    position: { container: $('#registerLink'), x: -325, y: 80, width: 400, arrow: 'tr' },
 	    submit: tourSubmitFunc
 	},
+    {
+        title: 'Login',
+        html: 'Returning users may click the Log In button to log in and view their tickets.',
+        buttons: { Prev: -1, Next: 1},
+        focus: 0,
+        position: { container: $('#loginLink'), x: -325, y: 80, width: 400, arrow: 'tr' },
+        submit: tourSubmitFunc
+    },
 	{
 	    title: "Projects",
         html: 'Administrators or Project Managers may add projects.',

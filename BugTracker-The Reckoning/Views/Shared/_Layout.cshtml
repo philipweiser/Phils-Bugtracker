@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale 1.0" />
     <title>@ViewBag.Title - BugTracker</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
     @using Microsoft.AspNet.Identity
     <meta name="description" content="BugTracker" />
 </head>
@@ -49,8 +48,11 @@
             </div>
     </div>
     <div class="container">
+        
+        @Scripts.Render("~/bundles/modernizr")
         @RenderBody()
         <hr />
+        @Styles.Render("~/Content/css")
         <footer>
             <p>&copy; @DateTime.Now.Year - BugTracker</p>
         </footer>
