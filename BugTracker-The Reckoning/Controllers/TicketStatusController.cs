@@ -44,22 +44,6 @@ namespace BugTracker_The_Reckoning.Controllers
             return View(pageList.ToPagedList(pageNumber, 5));
         }
 
-        // GET: TicketStatus/Details/5
-        [Authorize(Roles = "Administrator, Project Manager, Developer, Submitter")]
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TicketStatus ticketStatus = db.TicketStatuses.Find(id);
-            if (ticketStatus == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ticketStatus);
-        }
-
         // GET: TicketStatus/Create
         [Authorize(Roles = "Administrator, Project Manager, Developer, Submitter")]
         public ActionResult Create()
@@ -77,7 +61,7 @@ namespace BugTracker_The_Reckoning.Controllers
             {
                 db.TicketStatuses.Add(ticketStatus);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("../TypePriorityStatus/Index");
             }
 
             return View(ticketStatus);
@@ -109,37 +93,9 @@ namespace BugTracker_The_Reckoning.Controllers
             {
                 db.Entry(ticketStatus).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("../TypePriorityStatus/Index");
             }
             return View(ticketStatus);
-        }
-
-        // GET: TicketStatus/Delete/5
-        [Authorize(Roles = "Administrator, Project Manager, Developer, Submitter")]
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TicketStatus ticketStatus = db.TicketStatuses.Find(id);
-            if (ticketStatus == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ticketStatus);
-        }
-
-        // POST: TicketStatus/Delete/5
-        [Authorize(Roles = "Administrator, Project Manager, Developer, Submitter")]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TicketStatus ticketStatus = db.TicketStatuses.Find(id);
-            db.TicketStatuses.Remove(ticketStatus);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -17,30 +17,102 @@
             <tr>
                 <th>
                     @Html.ActionLink("Submitted By", "Index", new { sortOrder = ViewBag.NameSortParm, searchStr = ViewBag.searchStr })
+                    @if (ViewBag.sortOrder == "FirstName")
+                    {
+                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
+                    }
+                    else if (ViewBag.sortOrder == "FirstName_D")
+                    {
+                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
+                    }
                 </th>
                 <th>
                     @Html.ActionLink("Project Name", "Index", new { sortOrder = ViewBag.ProjectNameParm, searchStr = ViewBag.searchStr })
+                    @if (ViewBag.sortOrder == "ProjectName")
+                    {
+                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>   
+                    }
+                    else if (ViewBag.sortOrder == "ProjectName_D")
+                    {
+                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
+                    }
                 </th>
                 <th>
                     @Html.ActionLink("Priority", "Index", new { sortOrder = ViewBag.TicketPriorityNameParm, searchStr = ViewBag.searchStr })
+                    @if (ViewBag.sortOrder == "TicketPriorityName")
+                    {
+                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
+                    }
+                    else if (ViewBag.sortOrder == "TicketPriorityName_D")
+                    {
+                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
+                    }
                 </th>
                 <th>
                     @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.TicketStatusesNameParm, searchStr = ViewBag.searchStr })
+                    @if (ViewBag.sortOrder == "TicketStatusesName")
+                    {
+                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
+                    }
+                    else if (ViewBag.sortOrder == "TicketStatusesName_D")
+                    {
+                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
+                    }
                 </th>
                 <th>
                     @Html.ActionLink("Type", "Index", new { sortOrder = ViewBag.TicketTypesNameParm, searchStr = ViewBag.searchStr })
+                    @if (ViewBag.sortOrder == "TicketTypesName")
+                    {
+                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
+                    }
+                    else if (ViewBag.sortOrder == "TicketTypesName_D")
+                    {
+                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
+                    }
                 </th>
                 <th>
                     @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleParm, searchStr = ViewBag.searchStr })
+                    @if (ViewBag.sortOrder == "Title")
+                    {
+                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
+                    }
+                    else if (ViewBag.sortOrder == "Title_D")
+                    {
+                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
+                    }
                 </th>
                 <th>
                     @Html.ActionLink("Created", "Index", new { sortOrder = ViewBag.CreatedParm, searchStr = ViewBag.searchStr })
+                    @if (ViewBag.sortOrder == "Created")
+                    {
+                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
+                    }
+                    else if (ViewBag.sortOrder == "Created_D")
+                    {
+                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
+                    }
                 </th>
                 <th>
                     @Html.ActionLink("Updated", "Index", new { sortOrder = ViewBag.UpdatedParm, searchStr = ViewBag.searchStr })
+                    @if (ViewBag.sortOrder == "Updated")
+                    {
+                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
+                    }
+                    else if (ViewBag.sortOrder == "Updated_D")
+                    {
+                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
+                    }
                 </th>
                 <th>
                     @Html.ActionLink("Assigned Developer", "Index", new { sortOrder = ViewBag.AssignedParm, searchStr = ViewBag.searchStr })
+                    @if (ViewBag.sortOrder == "Assigned")
+                    {
+                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
+                    }
+                    else if (ViewBag.sortOrder == "Assigned_D")
+                    {
+                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
+                    }
                 </th>
             </tr>
         </table>
@@ -214,11 +286,8 @@
             </div>
         }
     </div>
-
     <div class="row" id="filters">
-
     </div>
-
 </div>
 <div class="row">
     <div class="col-md-12">

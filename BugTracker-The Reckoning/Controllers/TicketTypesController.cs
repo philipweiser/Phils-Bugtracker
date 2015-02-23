@@ -44,23 +44,6 @@ namespace BugTracker_The_Reckoning.Controllers
             var pageNumber = page ?? 1;
             return View(pageList.ToPagedList(pageNumber, 5));
         }
-
-        // GET: TicketTypes/Details/5
-        [Authorize(Roles = "Administrator, Project Manager, Developer, Submitter")]
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TicketType ticketType = db.TicketTypes.Find(id);
-            if (ticketType == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ticketType);
-        }
-
         // GET: TicketTypes/Create
         [Authorize(Roles = "Administrator, Project Manager, Developer, Submitter")]
         public ActionResult Create()
@@ -78,7 +61,7 @@ namespace BugTracker_The_Reckoning.Controllers
             {
                 db.TicketTypes.Add(ticketType);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("../TypePriorityStatus/Index");
             }
 
             return View(ticketType);
@@ -110,46 +93,9 @@ namespace BugTracker_The_Reckoning.Controllers
             {
                 db.Entry(ticketType).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("../TypePriorityStatus/Index");
             }
             return View(ticketType);
-        }
-
-        // GET: TicketTypes/Delete/5
-        [Authorize(Roles = "Administrator, Project Manager, Developer, Submitter")]
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TicketType ticketType = db.TicketTypes.Find(id);
-            if (ticketType == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ticketType);
-        }
-
-        // POST: TicketTypes/Delete/5
-        [Authorize(Roles = "Administrator, Project Manager, Developer, Submitter")]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TicketType ticketType = db.TicketTypes.Find(id);
-            db.TicketTypes.Remove(ticketType);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
         //used to display chart of number of tickets by type

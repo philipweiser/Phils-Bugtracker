@@ -32,8 +32,7 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tickets<strong class="caret"></strong></a>
                                     <ul class="dropdown-menu">
                                         <li>@Html.ActionLink("Tickets", "Index", "Tickets")</li>
-                                        <li>@Html.ActionLink("Ticket Priorities", "Index", "TicketPriorities")</li>
-                                        <li>@Html.ActionLink("Ticket Types", "Index", "TicketTypes")</li>
+                                        <li>@Html.ActionLink("Ticket Types, Priorities and Statuses", "Index", "TypePriorityStatus")</li>
                                     </ul>
                                 </li>
                                 if (User.IsInRole("Administrator") || User.IsInRole("Project Manager"))

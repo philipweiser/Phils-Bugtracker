@@ -6,7 +6,7 @@
 }
 <h2>Ticket Statuses</h2>
 <p>
-    @Html.ActionLink("New Status", "Create")
+    @Html.ActionLink("New Status", "Create", "TicketStatus")
 </p>
 <div class="col-md-12 column">
     <div class="row clearfix">
@@ -14,17 +14,26 @@
             <table class="table table-striped">
                 <tr>
                     <th>
-                        @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+                        @if (ViewBag.statusSort == true)
+                        {
+                            @Html.ActionLink("Name", "Index", new { statusSort = (Boolean?)ViewBag.statusSort, typeSort = (Boolean?)ViewBag.typeSort, prioritySort = (Boolean?)ViewBag.prioritySort, sortOrder = "status" })
+                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Name", "Index", new { statusSort = (Boolean?)ViewBag.statusSort, typeSort = (Boolean?)ViewBag.typeSort, prioritySort = (Boolean?)ViewBag.prioritySort, sortOrder = "status" })
+                            <span class="glyphicon glyphicon-triangle-top"></span>
+                        }
                     </th>
                     <th></th>
                 </tr>
             </table>
                 @foreach (var item in Model)
                 {
-                string theHref = "../TicketStatuses/Edit/" + item.Id;
+                string theHref = "../TicketStatus/Edit/" + item.Id;
                 <div class="row">
                     <div class="col-xs-12">
-                        <span title="Edit Type"><em>@Html.ActionLink(@item.Name, theHref, "TicketStatus", new { @class = "btn btn-primary tps", style = "width:100%; margin-bottom:4px;" })</em></span>
+                        <span title="Edit Type"><em>@Html.ActionLink(@item.Name, theHref, null, new { @class = "btn btn-primary tps", style = "width:100%; margin-bottom:4px;" })</em></span>
                     </div>
                 </div>
                 }

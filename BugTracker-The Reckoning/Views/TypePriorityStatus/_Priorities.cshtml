@@ -5,14 +5,24 @@
 @{
     ViewBag.Title = "Ticket Priorities";
 }
-<h2>Ticket Priorities List</h2>
+<h2>Ticket Priorities</h2>
 <p>
-    @Html.ActionLink("New Priority", "Create")
+    @Html.ActionLink("New Priority", "Create", "TicketPriorities")
 </p>
 <table class="table table-striped">
     <tr>
         <th>
-            @Html.ActionLink("Sort By Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @if (ViewBag.prioritySort == true) { 
+            
+                @Html.ActionLink("Name", "Index", new { prioritySort = (Boolean?)ViewBag.prioritySort, typeSort = (Boolean?)ViewBag.typeSort, statusSort = (Boolean?)ViewBag.statusSort, sortOrder = "priority" })
+    <span class="glyphicon glyphicon-triangle-bottom"></span>
+            }
+            else
+            {
+
+                    @Html.ActionLink("Name", "Index", new { prioritySort = (Boolean?)ViewBag.prioritySort, typeSort = (Boolean?)ViewBag.typeSort, statusSort = (Boolean?)ViewBag.statusSort, sortOrder = "priority" })
+    <span class="glyphicon glyphicon-triangle-top"></span>
+            }
         </th>
         <th></th>
     </tr>
@@ -27,7 +37,7 @@
                     string theHref = "../TicketPriorities/Edit/" + item.Id;
                     <div class="row">
                         <div class="col-xs-12">
-                            <span title="Edit Type"><em>@Html.ActionLink(@item.Name, theHref, "TicketPriority", new { @class = "btn btn-primary tps", style = "width:100%; margin-bottom:4px;" })</em></span>
+                            <span title="Edit Type"><em>@Html.ActionLink(@item.Name, theHref, null, new { @class = "btn btn-primary tps", style = "width:100%; margin-bottom:4px;" })</em></span>
                         </div>
                     </div>
                 }
