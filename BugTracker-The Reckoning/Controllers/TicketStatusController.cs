@@ -23,23 +23,23 @@ namespace BugTracker_The_Reckoning.Controllers
         {
             ViewBag.NameSortParm = sortOrder == "Name_D" ? "Name" : "Name_D";
 
-            var ticketstatuses = db.TicketStatuses.ToList();
+            var TicketStatus = db.TicketStatuses.ToList();
 
             switch (sortOrder)
             {
                 case ("Name"):
-                    ticketstatuses = ticketstatuses.OrderBy(t => t.Name).ToList();
+                    TicketStatus = TicketStatus.OrderBy(t => t.Name).ToList();
                     break;
                 case ("Name_D"):
-                    ticketstatuses = ticketstatuses.OrderByDescending(t => t.Name).ToList();
+                    TicketStatus = TicketStatus.OrderByDescending(t => t.Name).ToList();
                     break;
                 default:
-                    ticketstatuses = ticketstatuses.OrderBy(t => t.Name).ToList();
+                    TicketStatus = TicketStatus.OrderBy(t => t.Name).ToList();
                     break;
             }
 
             ViewBag.sortOrder = sortOrder;
-            var pageList = ticketstatuses.ToList();
+            var pageList = TicketStatus.ToList();
             var pageNumber = page ?? 1;
             return View(pageList.ToPagedList(pageNumber, 5));
         }

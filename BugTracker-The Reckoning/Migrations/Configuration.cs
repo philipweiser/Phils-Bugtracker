@@ -159,7 +159,7 @@ namespace BugTracker_The_Reckoning.Models.Migrations
             //    new TicketStatus { Name = "In progess" },
             //    new TicketStatus { Name = "Completed" }
             //};
-            //    status.ForEach(s => context.TicketStatuses.Add(s));
+            //    status.ForEach(s => context.TicketStatus.Add(s));
             //    context.SaveChanges();
 
             //    context.SaveChanges();

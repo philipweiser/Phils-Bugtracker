@@ -13,7 +13,7 @@ using BugTracker_The_Reckoning.Models;
 namespace BugTracker_The_Reckoning.Controllers
 {
     [Authorize]
-    public class TicketTypesController : Controller
+    public class TicketTypeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -110,7 +110,7 @@ namespace BugTracker_The_Reckoning.Controllers
             var count = new Dictionary<string, int>();
             db.Tickets.Include("TicketTypes").ToList().ForEach(t=> 
             {
-                 count[t.TicketTypes.Name] = count.Keys.Contains(t.TicketTypes.Name) ? count[t.TicketTypes.Name]++ : 1;
+                 count[t.TicketType.Name] = count.Keys.Contains(t.TicketType.Name) ? count[t.TicketType.Name]++ : 1;
             });
 
             ViewBag.count = count;

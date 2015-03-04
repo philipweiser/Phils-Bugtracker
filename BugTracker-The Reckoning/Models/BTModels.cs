@@ -98,8 +98,8 @@ namespace BugTracker_The_Reckoning.Models
         public virtual ApplicationUser OwnerUser { get; set; }
         public virtual ApplicationUser AssignedUser { get; set; }
         public virtual TicketPriority TicketPriority { get; set; }
-        public virtual TicketStatus TicketStatuses { get; set; }
-        public virtual TicketType TicketTypes { get; set; }
+        public virtual TicketStatus TicketStatus { get; set; }
+        public virtual TicketType TicketType { get; set; }
 
         public virtual ICollection<TicketAttachment> TicketAttachments { get; set; }
         public virtual ICollection<TicketComment> TicketComments { get; set; }

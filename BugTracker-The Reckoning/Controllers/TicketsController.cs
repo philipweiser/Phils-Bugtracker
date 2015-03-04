@@ -88,9 +88,9 @@ namespace BugTracker_The_Reckoning.Controllers
                 if (prioritySearch == true)
                     tickets.AddRange(ticketsAvailable.Where(t => t.TicketPriority.Name.Contains(searchStr)));
                 if (statusSearch == true)
-                    tickets.AddRange(ticketsAvailable.Where(t => t.TicketStatuses.Name.Contains(searchStr)));
+                    tickets.AddRange(ticketsAvailable.Where(t => t.TicketStatus.Name.Contains(searchStr)));
                 if (typeSearch == true)
-                    tickets.AddRange(ticketsAvailable.Where(t => t.TicketTypes.Name.Contains(searchStr)));
+                    tickets.AddRange(ticketsAvailable.Where(t => t.TicketType.Name.Contains(searchStr)));
                 if (assignSearch == true)
                 {
                     try
@@ -144,16 +144,16 @@ namespace BugTracker_The_Reckoning.Controllers
                     tickets = tickets.OrderByDescending(t => t.TicketPriority.Name).ToList();
                     break;
                 case ("TicketStatusesName"):
-                    tickets = tickets.OrderBy(t => t.TicketStatuses.Name).ToList();
+                    tickets = tickets.OrderBy(t => t.TicketStatus.Name).ToList();
                     break;
                 case ("TicketStatusesName_D"):
-                    tickets = tickets.OrderByDescending(t => t.TicketStatuses.Name).ToList();
+                    tickets = tickets.OrderByDescending(t => t.TicketStatus.Name).ToList();
                     break;
                 case ("TicketTypesName"):
-                    tickets = tickets.OrderBy(t => t.TicketTypes.Name).ToList();
+                    tickets = tickets.OrderBy(t => t.TicketType.Name).ToList();
                     break;
                 case ("TicketTypesName_D"):
-                    tickets = tickets.OrderByDescending(t => t.TicketTypes.Name).ToList();
+                    tickets = tickets.OrderByDescending(t => t.TicketType.Name).ToList();
                     break;
                 case ("Title"):
                     tickets = tickets.OrderBy(t => t.Title).ToList();
@@ -297,7 +297,7 @@ namespace BugTracker_The_Reckoning.Controllers
         }
         public void updateHistory(string property, Ticket old, Ticket current, string oldProp, string newProp)
         {
-            db.TicketHistories.Add(new TicketHistory()
+            var hist = new TicketHistory()
             {
                 TicketId = current.Id,
                 UserId = User.Identity.GetUserId(),
@@ -305,7 +305,9 @@ namespace BugTracker_The_Reckoning.Controllers
                 OldValue = oldProp,
                 NewValue = newProp,
                 Changed = current.Updated,
-            });
+            };
+
+            db.TicketHistories.Add(hist);
             db.SaveChanges();
         }
         public void CheckChanged(object first, object second)
@@ -354,7 +356,7 @@ namespace BugTracker_The_Reckoning.Controllers
         [Authorize(Roles = "Administrator, Project Manager, Developer, Submitter")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Created,Description,ProjectId,OwnerUserId,TicketPriorityId,TicketStatusId,TicketTypeId,AssignedUser,AssignedUserId")] Ticket ticket)
+        public ActionResult Edit([Bind(Include = "Id,Title,Created,Description,ProjectId,OwnerUserId,TicketPriorityId,TicketStatusId,TicketTypeId,AssignedUserId")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
