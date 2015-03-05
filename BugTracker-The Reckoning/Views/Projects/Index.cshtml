@@ -41,8 +41,11 @@
                             <div class="col-md-10 column">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <h4>Members: (@item.Members.Count)</h4>
+                                        <h4>Members: (@(item.Members.Count + 1))</h4>
                                         <ol>
+                                            <li>
+                                                @Html.ActionLink("Manager: " + item.Manager.DisplayName, "Details/" + item.Manager.Id, "ApplicationUsers")
+                                            </li>
                                             @foreach (var usr in item.Members)
                                             {
                                                 <li>

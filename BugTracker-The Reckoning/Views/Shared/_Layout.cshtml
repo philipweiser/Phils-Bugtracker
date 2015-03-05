@@ -25,9 +25,9 @@
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+                                <li id="Projects">@Html.ActionLink("Projects", "Index", "Projects")</li>
 
-                                <li class="dropdown" id="Users">
+                                <li class="dropdown" id="Tickets">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tickets<strong class="caret"></strong></a>
                                     <ul class="dropdown-menu">
                                         <li>@Html.ActionLink("Tickets", "Index", "Tickets")</li>
@@ -36,7 +36,7 @@
                                 </li>
                                 if (User.IsInRole("Administrator") || User.IsInRole("Project Manager"))
                                 {
-                                    <li>@Html.ActionLink("Users", "Index", "ApplicationUsers")</li>
+                                    <li id="Users">@Html.ActionLink("Users", "Index", "ApplicationUsers")</li>
                                 }
                             }
                         </ul>
@@ -50,9 +50,10 @@
     <div class="container">
         
         @Scripts.Render("~/bundles/modernizr")
+        @Styles.Render("~/Content/css")
         @RenderBody()
         <hr />
-        @Styles.Render("~/Content/css")
+        
         <footer>
             <p>&copy; @DateTime.Now.Year - BugTracker</p>
         </footer>

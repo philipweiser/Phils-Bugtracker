@@ -247,6 +247,7 @@ namespace BugTracker_The_Reckoning.Controllers
 
                 var theProject = db.Projects.Find(ticket.ProjectId);
                 ticket.Project = theProject;
+
                 ticket.AssignedUser = theProject.Manager;
                 ticket.AssignedUserId = theProject.ManagerId;
 

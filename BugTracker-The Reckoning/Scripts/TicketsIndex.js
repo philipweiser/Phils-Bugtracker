@@ -6,3 +6,7 @@ function AdvancedSearch() {
         $('.advancedSearch').slideUp(150);
     }
 }
+
+$(document).ready(function () {
+    $('#ticketsTable').DataTable();
+});

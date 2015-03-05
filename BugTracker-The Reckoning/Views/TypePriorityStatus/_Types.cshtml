@@ -8,47 +8,42 @@
 <p>
     @Html.ActionLink("New Type", "Create", "TicketTypes")
 </p>
-<div class="col-md-12 column">
-    <div class="row clearfix">
-        <div class="col-md-12">
-            <div class="panel-group" id="ticketTypes">
-                @if (Model != null)
-                {
-                    <table class="table table-striped">
-                        <tr>
-                            <th>
-                                @if (ViewBag.typeSort == true)
-                                {
-                                    @Html.ActionLink("Name", "Index", new { typeSort = (Boolean?)ViewBag.typeSort, prioritySort = (Boolean?)ViewBag.prioritySort, statusSort = (Boolean?)ViewBag.statusSort, sortOrder = "type" })
-                                    <span class="glyphicon glyphicon-triangle-bottom"></span>
-                                }
-                                else
-                                {
-                                    @Html.ActionLink("Name", "Index", new { typeSort = (Boolean?)ViewBag.typeSort, prioritySort = (Boolean?)ViewBag.prioritySort, statusSort = (Boolean?)ViewBag.statusSort, sortOrder = "type" })
-                                    <span class="glyphicon glyphicon-triangle-top"></span>
-                                }
-                            </th>
-                        </tr>
-                    </table>
-                    foreach (var item in Model)
-                    {
-                        string theHref = "../TicketTypes/Edit/" + item.Id;
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <span title="Edit Type"><em>@Html.ActionLink(@item.Name, theHref, null, new { @class = "btn btn-primary tps", style = "width:100%; margin-bottom:4px;" })</em></span>
-                            </div>
-                        </div>
-                    }
-                }
-            </div>
-        </div>
+<div class="row clearfix">
+    <div class="col-md-12">
+        @if (Model != null)
+        {
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        @if (ViewBag.typeSort == true)
+                        {
+                            @Html.ActionLink("Name", "Index", new { typeSort = (Boolean?)ViewBag.typeSort, prioritySort = (Boolean?)ViewBag.prioritySort, statusSort = (Boolean?)ViewBag.statusSort, sortOrder = "type" })
+                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Name", "Index", new { typeSort = (Boolean?)ViewBag.typeSort, prioritySort = (Boolean?)ViewBag.prioritySort, statusSort = (Boolean?)ViewBag.statusSort, sortOrder = "type" })
+                            <span class="glyphicon glyphicon-triangle-top"></span>
+                        }
+                    </th>
+                </tr>
+            </table>
+            foreach (var item in Model)
+            {
+                string theHref = "../TicketType/Edit/" + item.Id;
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span title="Edit Type"><em>@Html.ActionLink(@item.Name, theHref, null, new { @class = "btn btn-primary tps", style = "width:100%; margin-bottom:4px;" })</em></span>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <div class="col-xs-12">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.sortOrder }))
     </div>
 </div>
-<div class="row">
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.sortOrder }))
-</div>
-
-
 
 

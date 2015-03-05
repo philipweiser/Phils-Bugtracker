@@ -5,6 +5,10 @@
 @{
     ViewBag.Title = "Tickets List";
 }
+
+<script src="~/Scripts/DataTables-1.10.5/media/js/jquery.dataTables.min.js"></script>
+<link href="~/Scripts/DataTables-1.10.5/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+
 <div class="row">
     <div class="col-xs-8">
         <h2>Tickets List</h2>
@@ -13,287 +17,65 @@
 
 </div>
 <div class="row">
-    <div class="col-sm-10">
-        <table class="table table-striped">
-            <tr>
-                <th>
-                    @Html.ActionLink("Submitted By", "Index", new { sortOrder = ViewBag.NameSortParm, searchStr = ViewBag.searchStr })
-                    @if (ViewBag.sortOrder == "FirstName")
-                    {
-                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
-                    }
-                    else if (ViewBag.sortOrder == "FirstName_D")
-                    {
-                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
-                    }
-                </th>
-                <th>
-                    @Html.ActionLink("Project Name", "Index", new { sortOrder = ViewBag.ProjectNameParm, searchStr = ViewBag.searchStr })
-                    @if (ViewBag.sortOrder == "ProjectName")
-                    {
-                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>   
-                    }
-                    else if (ViewBag.sortOrder == "ProjectName_D")
-                    {
-                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
-                    }
-                </th>
-                <th>
-                    @Html.ActionLink("Priority", "Index", new { sortOrder = ViewBag.TicketPriorityNameParm, searchStr = ViewBag.searchStr })
-                    @if (ViewBag.sortOrder == "TicketPriorityName")
-                    {
-                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
-                    }
-                    else if (ViewBag.sortOrder == "TicketPriorityName_D")
-                    {
-                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
-                    }
-                </th>
-                <th>
-                    @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.TicketStatusNameParm, searchStr = ViewBag.searchStr })
-                    @if (ViewBag.sortOrder == "TicketStatusName")
-                    {
-                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
-                    }
-                    else if (ViewBag.sortOrder == "TicketStatusName_D")
-                    {
-                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
-                    }
-                </th>
-                <th>
-                    @Html.ActionLink("Type", "Index", new { sortOrder = ViewBag.TicketTypesNameParm, searchStr = ViewBag.searchStr })
-                    @if (ViewBag.sortOrder == "TicketTypesName")
-                    {
-                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
-                    }
-                    else if (ViewBag.sortOrder == "TicketTypesName_D")
-                    {
-                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
-                    }
-                </th>
-                <th>
-                    @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleParm, searchStr = ViewBag.searchStr })
-                    @if (ViewBag.sortOrder == "Title")
-                    {
-                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
-                    }
-                    else if (ViewBag.sortOrder == "Title_D")
-                    {
-                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
-                    }
-                </th>
-                <th>
-                    @Html.ActionLink("Created", "Index", new { sortOrder = ViewBag.CreatedParm, searchStr = ViewBag.searchStr })
-                    @if (ViewBag.sortOrder == "Created")
-                    {
-                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
-                    }
-                    else if (ViewBag.sortOrder == "Created_D")
-                    {
-                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
-                    }
-                </th>
-                <th>
-                    @Html.ActionLink("Updated", "Index", new { sortOrder = ViewBag.UpdatedParm, searchStr = ViewBag.searchStr })
-                    @if (ViewBag.sortOrder == "Updated")
-                    {
-                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
-                    }
-                    else if (ViewBag.sortOrder == "Updated_D")
-                    {
-                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
-                    }
-                </th>
-                <th>
-                    @Html.ActionLink("Assigned Developer", "Index", new { sortOrder = ViewBag.AssignedParm, searchStr = ViewBag.searchStr })
-                    @if (ViewBag.sortOrder == "Assigned")
-                    {
-                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size:smaller"></span>
-                    }
-                    else if (ViewBag.sortOrder == "Assigned_D")
-                    {
-                        <span class="glyphicon glyphicon-triangle-top" style="font-size:smaller"></span>
-                    }
-                </th>
-            </tr>
+    <div class="col-sm-12">
+        <table class="display" id="ticketsTable">
+            <thead>
+                <tr>
+                    <th>
+                        Submitted By
+                    </th>
+                    <th>
+                        Project Name
+                    </th>
+                    <th>
+                        Priority
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Created
+                    </th>
+                    <th>
+                        Updated
+                    </th>
+                    <th>
+                        Assigned Developer
+                    </th>
+                    <th>
+                        Edit/Details
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        
+                            <td>@Html.DisplayFor(modelItem => item.OwnerUser.FirstName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Project.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TicketPriority.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TicketStatus.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TicketType.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Updated)</td>
+                            <td>@Html.DisplayFor(modelItem => item.AssignedUser.DisplayName)</td>
+                            <td><span title="Edit Ticket">@Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil"})</span>
+                                &nbsp;&nbsp;&nbsp;<span title="Details">@Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "glyphicon glyphicon-zoom-in" })</span></td>
+                    </tr>
+
+                }
+
+            </tbody>
         </table>
-        <div class="panel-group" id="tickets">
-            @foreach (var item in Model)
-            {
-                string theHref = "#panel-element-tickets" + item.Id;
-                string theId = "panel-element-tickets" + item.Id;
-                <div class="panel panel-default" style="background-color:#f5f5f5; border-color:#dddddd">
-                    <div class="row">
-                        <div class="panel-heading col-sm-12">
-                            <a class=" panel-title" data-toggle="collapse" data-parent="#tickets" href=@theHref>
-                                <div class="col-xs-2">
-                                    <h6>@Html.DisplayFor(modelItem => item.OwnerUser.FirstName)</h6>
-                                </div>
-                                <div class="col-xs-1">
-                                    <h6> @Html.DisplayFor(modelItem => item.Project.Name)</h6>
-                                </div>
-                                <div class="col-xs-1">
-                                    <h6> @Html.DisplayFor(modelItem => item.TicketPriority.Name)</h6>
-                                </div>
-                                <div class="col-xs-1">
-                                    <h6>@Html.DisplayFor(modelItem => item.TicketStatus.Name)</h6>
-                                </div>
-                                <div class="col-xs-1">
-                                    <h6>@Html.DisplayFor(modelItem => item.TicketType.Name)</h6>
-                                </div>
-                                <div class="col-xs-1">
-                                    <h6>@Html.DisplayFor(modelItem => item.Title)</h6>
-                                </div>
-                                <div class="col-xs-1">
-                                    <h6>@Html.DisplayFor(modelItem => item.Created)</h6>
-                                </div>
-                                <div class="col-xs-1">
-                                    <h6>@Html.DisplayFor(modelItem => item.Updated)</h6>
-                                </div>
-                                <div class="col-xs-1">
-                                    <h6>@Html.DisplayFor(modelItem => item.AssignedUser.DisplayName)</h6>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div id=@theId class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-xs-12" style="background-image:linear-gradient(#04519b, #044687 60%, #033769); margin-bottom:10px">
-                                    <h1 style="text-align:center; color:white;">@Html.DisplayFor(modelItem => item.Title)</h1>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="col-sm-2">
-                                        <p><b>Submitted By: </b></p>
-                                        <p><b>Project Name: </b></p>
-                                        <p><b>Assigned Developer:</b></p>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <p>@Html.DisplayFor(modelItem => item.OwnerUser.FirstName)</p>
-                                        <p>@Html.DisplayFor(modelItem => item.Project.Name)</p>
-                                        <p>@Html.DisplayFor(modelItem => item.AssignedUser.DisplayName)</p>
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <p><b>Status:</b></p>
-                                        <p><b>Priority:</b></p>
-                                        <p><b>Type:</b></p>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <p>@Html.DisplayFor(modelItem => item.TicketStatus.Name)</p>
-                                        <p>@Html.DisplayFor(modelItem => item.TicketPriority.Name)</p>
-                                        <p>@Html.DisplayFor(modelItem => item.TicketType.Name)</p>
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <p>
-                                            <b>
-                                                Created:
-                                            </b>
-                                        </p>
-                                        <p><b>Updated:</b></p>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <p>
-                                            @Html.DisplayFor(modelItem => item.Created)
-                                        </p>
-                                        <p>@Html.DisplayFor(modelItem => item.Updated) </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-10 column">
-                                    <div class="col-sm-4">
-                                        <h3>
-                                            @Html.ActionLink("Attachments(" + item.TicketAttachments.Count() + ")", "Details/" + item.Id)
-                                        </h3>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <h3>
-                                            @Html.ActionLink("Comments(" + item.TicketComments.Count() + ")", "Details/" + item.Id)
-                                        </h3>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <h3>
-                                            @Html.ActionLink("History(" + item.TicketHistories.Count() + ")", "Details/" + item.Id)
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 column">
-                                    <div class="btn-group btn-group-vertical" style="padding-top:20px">
-                                        @if (User.IsInRole("Administrator") || User.IsInRole("Project Manager"))
-                                        {
-                                            <span title="Edit Ticket"><em>@Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-default glyphicon glyphicon-pencil" })</em></span>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            }
-        </div>
-    </div>
-
-
-
-
-    <div class="col-xs-2">
-        @using (Html.BeginForm("Index", "Tickets", FormMethod.Post))
-        {
-            <div class="row" style="margin-top:20px">
-                @Html.TextBox("searchStr")<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-                <button type="button" class="btn btn-primary" onclick="AdvancedSearch()">Advanced Search</button>
-            </div>
-            <div class="advancedSearch" id="adv" style="font-size:12px">
-                <h3>Include:</h3>
-                <div class="row">
-                    @Html.CheckBox("titleSearch", (bool)ViewBag.titleSearch)
-                    @Html.Label("Title")
-                </div>
-                <div class="row">
-                    @Html.CheckBox("nameSearch", (bool)ViewBag.nameSearch)
-                    @Html.Label("Owner Name")
-                </div>
-                <div class="row">
-                    @Html.CheckBox("emailSearch", (bool)ViewBag.emailSearch)
-                    @Html.Label("Owner Email")
-                </div>
-                <div class="row">
-                    @Html.CheckBox("projectSearch", (bool)ViewBag.projectSearch)
-                    @Html.Label("Projects")
-                </div>
-                <div class="row">
-                    @Html.CheckBox("attachmentsSearch", (bool)ViewBag.attachmentsSearch)
-                    @Html.Label("Attachments")
-                </div>
-                <div class="row">
-                    @Html.CheckBox("prioritySearch", (bool)ViewBag.prioritySearch)
-                    @Html.Label("Priority")
-                </div>
-                <div class="row">
-                    @Html.CheckBox("typeSearch", (bool)ViewBag.typeSearch)
-                    @Html.Label("Type")
-                </div>
-                <div class="row">
-                    @Html.CheckBox("statusSearch", (bool)ViewBag.statusSearch)
-                    @Html.Label("Status")
-                </div>
-                <div class="row">
-                    @Html.CheckBox("assignSearch", (bool)ViewBag.assignSearch)
-                    @Html.Label("Developer")
-                </div>
-            </div>
-        }
-    </div>
-    <div class="row" id="filters">
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.sortOrder, searchStr = ViewBag.searchStr, ViewBag.titleSearch, ViewBag.nameSearch, ViewBag.emailSearch, ViewBag.projectSearch, ViewBag.attachmentsSearch, ViewBag.prioritySearch, ViewBag.statusSearch, ViewBag.typeSearch, ViewBag.assignSearch }))
     </div>
 </div>
 <script src="~/Scripts/TicketsIndex.js"></script>

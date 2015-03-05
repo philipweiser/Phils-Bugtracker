@@ -72,7 +72,7 @@ namespace BugTracker_The_Reckoning.Controllers
             switch (autoLogin)
             {
                 case ("Administrator"):
-                    await SignInManager.PasswordSignInAsync("administrator@weiserp-bugtracker.azurewebsites.net", "LearnToCode1", false, shouldLockout: false);
+                    await SignInManager.PasswordSignInAsync("administrator@test.com", "LearnToCode1", false, shouldLockout: false);
                     break;
                 case ("ProjectManager"):
                     await SignInManager.PasswordSignInAsync("projectmanager@google.com", "LearnToCode1", false, shouldLockout: false);

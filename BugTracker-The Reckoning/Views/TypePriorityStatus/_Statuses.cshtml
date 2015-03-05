@@ -8,7 +8,6 @@
 <p>
     @Html.ActionLink("New Status", "Create", "TicketStatus")
 </p>
-<div class="col-md-12 column">
     <div class="row clearfix">
         <div class="col-md-12">
             <table class="table table-striped">
@@ -28,19 +27,19 @@
                     <th></th>
                 </tr>
             </table>
-                @foreach (var item in Model)
-                {
-                string theHref = "../TicketStatus/Edit/" + item.Id;
+            @foreach (var item in Model)
+            {
+                string theHref = "../TicketStatuses/Edit/" + item.Id;
                 <div class="row">
                     <div class="col-xs-12">
                         <span title="Edit Type"><em>@Html.ActionLink(@item.Name, theHref, null, new { @class = "btn btn-primary tps", style = "width:100%; margin-bottom:4px;" })</em></span>
                     </div>
                 </div>
-                }
-            
-            </div>
+            }
+
         </div>
-    </div>
+        <div class="col-xs-12">
             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.sortOrder }))
-
+        </div>
+    </div>
