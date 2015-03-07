@@ -20,9 +20,9 @@
                 </div>
                 <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li id="Home">@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li id="About">@Html.ActionLink("About", "About", "Home")</li>
+                            <li id="Contact">@Html.ActionLink("Contact", "Contact", "Home")</li>
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <li id="Projects">@Html.ActionLink("Projects", "Index", "Projects")</li>
@@ -48,7 +48,7 @@
             </div>
     </div>
     <div class="container">
-        
+        <link href="~/Content/jquery-impromptu.min.css" rel="stylesheet" />
         @Scripts.Render("~/bundles/modernizr")
         @Styles.Render("~/Content/css")
         @RenderBody()
