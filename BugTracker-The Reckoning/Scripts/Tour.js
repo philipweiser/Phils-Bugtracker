@@ -19,7 +19,7 @@ tourStates = [
 	},
 	{
 	    title: 'Registration',
-	    html: 'Security is important. BugTracker requires users to register on the site before creating tickets.<br><br> For demo purposes, you have been automatically logged in as an Administrator.',
+	    html: 'Security is important. BugTracker requires users to register on the site before accessing the tracker.<br><br> For demo purposes, you have been automatically logged in as an Administrator.',
 	    buttons: { Prev: -1, Next: 1 },
 	    focus: 0,
 	    position: { container: '#loginRegister', x: -325, y: 80, width: 400, arrow: 'tr' },
@@ -35,7 +35,7 @@ tourStates = [
     },
     {
         title: "Roles",
-        html: 'Authorization is Role-based using Entity Framework. After registering, a user is assigned the Submitter Role.  A submitter is only allowed to create and view their own tickets.',
+        html: 'Authorization is Role-based using Entity Framework. After registering, a user is assigned the Submitter Role.  A Submitter is only allowed to create and view their own tickets.',
         buttons: { Prev: -1, Next: 1 },
         focus: 0,
         position: { container: '#Users', x: 0, y: 80, width: 400 },

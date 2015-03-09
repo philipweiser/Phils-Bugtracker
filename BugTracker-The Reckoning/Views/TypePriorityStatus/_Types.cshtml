@@ -30,7 +30,7 @@
             </table>
             foreach (var item in Model)
             {
-                string theHref = "../TicketType/Edit/" + item.Id;
+                string theHref = "../TicketTypes/Edit/" + item.Id;
                 <div class="row">
                     <div class="col-xs-12">
                         <span title="Edit Type"><em>@Html.ActionLink(@item.Name, theHref, null, new { @class = "btn btn-primary tps", style = "width:100%; margin-bottom:4px;" })</em></span>

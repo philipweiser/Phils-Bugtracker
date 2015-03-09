@@ -13,7 +13,7 @@ using BugTracker_The_Reckoning.Models;
 namespace BugTracker_The_Reckoning.Controllers
 {
     [Authorize]
-    public class TicketStatusController : Controller
+    public class TicketStatusesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 

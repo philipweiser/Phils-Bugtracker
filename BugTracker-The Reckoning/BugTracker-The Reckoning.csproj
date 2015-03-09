@@ -184,7 +184,7 @@
     <Compile Include="Controllers\TicketNotificationsController.cs" />
     <Compile Include="Controllers\TicketPrioritiesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
-    <Compile Include="Controllers\TicketStatusController.cs" />
+    <Compile Include="Controllers\TicketStatusesController.cs" />
     <Compile Include="Controllers\TicketTypesController.cs" />
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Controllers\TypePriorityStatusController.cs" />
